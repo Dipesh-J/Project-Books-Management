@@ -9,7 +9,7 @@ import { SectionHeader, Card, Input, Textarea, Button } from '../components';
 const CreateBookPage = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const userId = user?.userId || localStorage.getItem('userId');
+  const userId = user?.userId;
   
   const [formData, setFormData] = useState({
     title: '',
