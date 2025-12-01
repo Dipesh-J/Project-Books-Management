@@ -79,7 +79,7 @@ const bookCreation = async (req, res) => {
         }
 
 const bookDetails = await bookModel.create(requestBody)
-  return res.status(201).send({status:false,msg:"book created successfully",data:bookDetails})
+  return res.status(201).send({status:true,msg:"book created successfully",data:bookDetails})
     } catch (err) {
         return res.status(500).send({ status: false, msg: err.message })
     }
