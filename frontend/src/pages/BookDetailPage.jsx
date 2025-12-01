@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { booksAPI, reviewsAPI } from '../services/api';
+import { booksAPI, reviewsAPI, getStoredUserId } from '../services/api';
 import useAuthStore from '../stores/authStore';
 import { 
   SectionHeader, Card, Button, Badge, Loader, APIError, 
@@ -14,7 +14,7 @@ const BookDetailPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { user } = useAuthStore();
-  const userId = user?.userId || localStorage.getItem('userId');
+  const userId = user?.userId || getStoredUserId();
   
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);

@@ -1,18 +1,27 @@
 import axios from 'axios';
 
-// Helper to get token from persisted zustand store
-const getStoredToken = () => {
+// Helper to get data from persisted zustand store
+const getStoredAuthData = () => {
   try {
     const authStorage = localStorage.getItem('auth-storage');
     if (authStorage) {
       const parsed = JSON.parse(authStorage);
-      return parsed.state?.token || null;
+      return {
+        token: parsed.state?.token || null,
+        userId: parsed.state?.user?.userId || null,
+      };
     }
   } catch {
-    return null;
+    return { token: null, userId: null };
   }
-  return null;
+  return { token: null, userId: null };
 };
+
+// Helper to get token from persisted zustand store
+const getStoredToken = () => getStoredAuthData().token;
+
+// Helper to get userId from persisted zustand store
+export const getStoredUserId = () => getStoredAuthData().userId;
 
 // Base API configuration
 const api = axios.create({

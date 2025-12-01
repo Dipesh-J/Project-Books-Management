@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { booksAPI } from '../services/api';
+import { booksAPI, getStoredUserId } from '../services/api';
 import useAuthStore from '../stores/authStore';
 import { SectionHeader, Card, Input, Textarea, Button } from '../components';
 
 const CreateBookPage = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
-  const userId = user?.userId;
+  const userId = user?.userId || getStoredUserId();
   
   const [formData, setFormData] = useState({
     title: '',
